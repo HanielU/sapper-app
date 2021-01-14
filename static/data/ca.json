@@ -1,0 +1,58 @@
+[
+	{
+		"M_code": "STA204",
+		"M_name": "Statistics For Computing & Applied Sciences",
+		"CA_score": 85,
+		"CA_marked": 100,
+		"CA_percentage": 100
+	},
+	{
+		"M_code": "COM203",
+		"M_name": "Scripting Language",
+		"CA_score": 88.4,
+		"CA_marked": 100,
+		"CA_percentage": 100
+	},
+	{
+		"M_code": "COM208",
+		"M_name": "World Wide Web",
+		"CA_score": 82,
+		"CA_marked": 100,
+		"CA_percentage": 100
+	},
+	{
+		"M_code": "MTH102",
+		"M_name": "Calculus",
+		"CA_score": 82,
+		"CA_marked": 100,
+		"CA_percentage": 100
+	},
+	{
+		"M_code": "MTH203",
+		"M_name": "Discrete Mathematics",
+		"CA_score": 77,
+		"CA_marked": 100,
+		"CA_percentage": 100
+	},
+	{
+		"M_code": "Gen201",
+		"M_name": "Entrepreneurship 1",
+		"CA_score": 70,
+		"CA_marked": 100,
+		"CA_percentage": 100
+	},
+	{
+		"M_code": "GEN207",
+		"M_name": "Environmental & Sustainable Development",
+		"CA_score": 69,
+		"CA_marked": 100,
+		"CA_percentage": 100
+	},
+	{
+		"M_code": "MTH312",
+		"M_name": "Numerical Analysis",
+		"CA_score": 62,
+		"CA_marked": 100,
+		"CA_percentage": 100
+	}
+]
