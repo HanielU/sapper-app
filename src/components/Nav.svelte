@@ -20,6 +20,8 @@
 			nav.style.position = "fixed";
 			console.log(nav.style.position);
 		}
+	} else if (nav && pageWidth > 1124) {
+		nav.style.position = "relative";
 	}
 </script>
 
