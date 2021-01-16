@@ -62,7 +62,7 @@
 
 	@media screen and (max-width: 1124px) {
 		.main {
-			padding: 0;
+			padding: 0 0 30px;
 
 			> div {
 				margin: 0 20px 30px;

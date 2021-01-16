@@ -211,7 +211,7 @@
 
 	@media screen and (max-width: 1280px) {
 		.main {
-			padding: 0px;
+			padding: 0 0 30px;
 		}
 
 		.content-grid {
