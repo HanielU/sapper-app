@@ -1,26 +1,18 @@
 [
 	{
 		"title": "Registered Modules",
-		"number": 28,
-		"bg": "#F4F6FA",
-		"path": "/images/regmod-icon.svg"
+		"number": 28
 	},
 	{
 		"title": "Modules Passed",
-		"number": 19,
-		"bg": "#F6FAF4",
-		"path": "/images/passed.svg"
+		"number": 19
 	},
 	{
 		"title": "Modules Failed",
-		"number": 1,
-		"bg": "#FAF4F4",
-		"path": "/images/failed.svg"
+		"number": 1
 	},
 	{
 		"title": "Currently Taking",
-		"number": 8,
-		"bg": "#FAF6F4",
-		"path": "/images/current.svg"
+		"number": 8
 	}
 ]

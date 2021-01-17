@@ -13,7 +13,14 @@
 
 <script>
 	import Header from "../components/Header.svelte";
+	import IconRegistered from "../components/dashboard/icons/Registered.svelte";
+	import IconPassed from "../components/dashboard/icons/Passed.svelte";
+	import IconFailed from "../components/dashboard/icons/Failed.svelte";
+	import IconCurrent from "../components/dashboard/icons/Current.svelte";
 	export let ALL_Data;
+
+	// list of icon components (for quicker icon rendering)
+	let icons = [IconRegistered, IconPassed, IconFailed, IconCurrent];
 </script>
 
 <svelte:head>
@@ -31,11 +38,12 @@
 				<h3 class="await">Please wait...</h3>
 			{:then quickStats}
 				<!-- destructured statData -->
-				{#each quickStats as { bg, path, title, number }}
+				{#each quickStats as { title, number }, i}
 					<div class="stat">
-						<div class="icon-bg" style="--icon-bg: {bg}">
-							<img src={path} alt="" />
-						</div>
+						<!-- Icons -->
+						<svelte:component this={icons[i]} />
+						<!-- Icons -->
+
 						<div class="stat__text-wrapper">
 							<p class="stat__title">{title}</p>
 							<span class="stat__value"> {number} </span>
@@ -121,20 +129,6 @@
 			margin-right: 20px;
 			border-right: 2px solid #f8fafc;
 			padding-right: 20px;
-		}
-
-		.icon-bg {
-			padding: 20px;
-			background: var(--icon-bg);
-			border-radius: 50%;
-			width: fit-content;
-			display: grid;
-			place-items: center;
-			margin-right: 20px;
-
-			img {
-				height: var(--qs-icon-regular);
-			}
 		}
 
 		&__title {
@@ -224,11 +218,6 @@
 				margin-right: 15px;
 				border-right: 2px solid #f8fafc;
 				padding-right: 15px;
-			}
-
-			.icon-bg {
-				padding: 18px;
-				margin-right: 15px;
 			}
 		}
 	}

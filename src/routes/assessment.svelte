@@ -11,8 +11,8 @@
 </script>
 
 <script>
-	import Tab from "../components/assessment-tabs/Ass_Tabs.svelte";
-	import CA from "../components/assessment-tabs/CA_tab.svelte";
+	import Tab from "../components/assessment/Ass_Tabs.svelte";
+	import CA from "../components/assessment/CA_tab.svelte";
 	import Header from "../components/Header.svelte";
 
 	export let CA_Data; // passed as a prop to CA_tab
