@@ -166,7 +166,7 @@
 			</svg>
 			<span>Registration</span>
 		</a>
-		<a href="." class="navlinks-item">
+		<a href="." class="navlinks-item" on:click={toggleNav}>
 			<svg
 				width="20"
 				height="20"

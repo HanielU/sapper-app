@@ -24,7 +24,7 @@
 
 <style lang="scss">
 	.wrapper {
-		height: 100%;
+		height: 100vh;
 		width: 100%;
 		position: relative;
 		display: grid;
