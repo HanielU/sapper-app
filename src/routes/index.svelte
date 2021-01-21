@@ -3,7 +3,7 @@
 
 	let id, password;
 	let placeholder = ["Student ID", "Enter your Password"];
-	$: [idp, pwdp] = placeholder; // init idPlaceholder & passwordPlaceholder as [idp, pwdp]
+	let [idp, pwdp] = placeholder; // init idPlaceholder & passwordPlaceholder as [idp, pwdp]
 	function handleSubmit() {
 		console.log({ id, password });
 
