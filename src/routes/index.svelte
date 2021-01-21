@@ -2,6 +2,8 @@
 	import { goto } from "@sapper/app";
 
 	let id, password;
+	let placeholder = ["Student ID", "Enter your Password"];
+	$: [idp, pwdp] = placeholder; // init idPlaceholder & passwordPlaceholder as [idp, pwdp]
 	function handleSubmit() {
 		console.log({ id, password });
 
@@ -24,18 +26,26 @@
 		<div class="form-header">
 			<h1>Log In</h1>
 			<p>
-				Enter your ID and Password to gain acees to Your stuent portal
+				Enter your ID and Password to gain acees to Your student portal.
 			</p>
 		</div>
 
 		<form on:submit|preventDefault={handleSubmit}>
 			<span class="label"> ID </span>
-			<input type="text" placeholder="Student ID" bind:value={id} />
+			<input
+				type="text"
+				placeholder={idp}
+				on:focus={() => (idp = "")}
+				on:focusout={() => (idp = placeholder[0])}
+				bind:value={id}
+			/>
 
 			<span class="label"> Password </span>
 			<input
-				type="text"
-				placeholder="Enter your Password"
+				type="password"
+				placeholder={pwdp}
+				on:focus={() => (pwdp = "")}
+				on:focusout={() => (pwdp = placeholder[1])}
 				bind:value={password}
 			/>
 
@@ -97,7 +107,7 @@
 		p {
 			margin: 5px 0 30px;
 			font-family: var(--poppins);
-			font-size: var(--font-size-smaller);
+			font-size: calc(var(--font-size-smallest) + 1px);
 			font-weight: var(--regular);
 		}
 	}
@@ -152,6 +162,7 @@
 			background: var(--input-active-border);
 			font-size: var(--font-size-small);
 			font-weight: var(--bold);
+			font-family: var(--font-family);
 			border: none;
 			border-radius: var(--little-radius);
 			margin-bottom: 20px;
@@ -161,14 +172,14 @@
 
 	.remarks {
 		font-family: var(--poppins);
-		font-size: var(--font-size-smaller);
+		font-size: calc(var(--font-size-smallest) + 1px);
 		font-weight: var(--regular);
 		text-align: center;
 	}
 
 	@media screen and (max-width: 1124px) {
 		.right {
-			padding: 20px 50px 50px;
+			padding: 20px 50px 80px;
 		}
 	}
 
