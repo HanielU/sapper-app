@@ -14,7 +14,7 @@
 	});
 </script>
 
-<div class="wrapper">
+<div class="wrapper" class:notloggedin={segment === undefined}>
 	<Nav {segment} />
 
 	<main class:open={navOpen} style="--nav-width: {navWidth}px">
@@ -29,10 +29,15 @@
 		position: relative;
 		display: grid;
 		grid-template-columns: minmax(200px, 0.22fr) 1fr;
+
+		&.notloggedin {
+			display: block;
+		}
 	}
 
 	main {
 		height: 100vh;
+		width: 100%;
 		background: #f7f6fb;
 		overflow: hidden;
 	}

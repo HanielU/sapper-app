@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 	import Assessment from "../routes/assessment.svelte";
+	import Dashboard from "../routes/dashboard.svelte";
 	import { store } from "./store.js";
 	export let segment;
 
@@ -29,6 +30,7 @@
 
 <nav
 	class:open
+	class:hidden={segment === undefined}
 	style="--nav-width: -{width}px"
 	bind:this={nav}
 	bind:clientWidth={width}
@@ -40,11 +42,11 @@
 
 	<section class="navlinks">
 		<a
-			href="."
+			href="dashboard"
 			class="navlinks-item"
 			on:click={toggleNav}
 			rel="prefetch"
-			class:active={segment === undefined}>
+			class:active={segment === "dashboard"}>
 			<svg
 				width="16"
 				height="16"
@@ -164,7 +166,7 @@
 			</svg>
 			<span>Registration</span>
 		</a>
-		<a href class="navlinks-item">
+		<a href="." class="navlinks-item">
 			<svg
 				width="20"
 				height="20"
@@ -192,6 +194,10 @@
 		box-shadow: 2px 0px 16px #dfe2ea;
 		z-index: 1;
 		// border-right: 0.3px solid rgba(83, 89, 104, 0.2);
+
+		&.hidden {
+			display: none;
+		}
 	}
 
 	.logo-wrapper {

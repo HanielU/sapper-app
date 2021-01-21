@@ -1,281 +1,184 @@
-<script context="module">
-	// for prefetching data
-	export async function preload() {
-		const statData = await this.fetch("data/quickstats.json");
-		const studData = await this.fetch("data/studdetails.json");
-		const ALL_Data = [await statData.json(), await studData.json()];
-
-		if (statData.ok && studData.ok) {
-			return { ALL_Data };
-		}
-	}
-</script>
-
 <script>
-	import Header from "../components/Header.svelte";
-	import IconRegistered from "../components/dashboard/icons/Registered.svelte";
-	import IconPassed from "../components/dashboard/icons/Passed.svelte";
-	import IconFailed from "../components/dashboard/icons/Failed.svelte";
-	import IconCurrent from "../components/dashboard/icons/Current.svelte";
-	export let ALL_Data;
+	import { goto } from "@sapper/app";
 
-	// list of icon components (for quicker icon rendering)
-	let icons = [IconRegistered, IconPassed, IconFailed, IconCurrent];
+	let id, password;
+	function handleSubmit() {
+		console.log({ id, password });
+
+		goto("dashboard");
+	}
 </script>
 
 <svelte:head>
-	<title>My Dashboard</title>
+	<title>Student Portal | Baze University Abuja</title>
 </svelte:head>
+<div class="wrapper">
+	<section class="left" />
 
-<div class="main">
-	<Header title="My Dashboard" />
-
-	<!-- Main Content Wrapper -->
-	<div class="content-grid">
-		<!-- Quick statistics -->
-		<section class="quick-stats bg">
-			{#await ALL_Data[0]}
-				<h3 class="await">Please wait...</h3>
-			{:then quickStats}
-				<!-- destructured statData -->
-				{#each quickStats as { title, number }, i}
-					<div class="stat">
-						<!-- Icons -->
-						<svelte:component this={icons[i]} />
-						<!-- Icons -->
-
-						<div class="stat__text-wrapper">
-							<p class="stat__title">{title}</p>
-							<span class="stat__value"> {number} </span>
-						</div>
-					</div>
-				{/each}
-			{/await}
-		</section>
-
-		<!-- Cumulative grade point average -->
-		<section class="cumul-pt-avg bg">
-			<h1>Cumulative Grade point Average</h1>
-			<span>0</span>
-		</section>
-
-		<!-- Student details -->
-		<section class="stud bg">
-			{#await ALL_Data[1]}
-				<h3>Please wait...</h3>
-			{:then studDetails}
-				<!-- destructured studData -->
-				{#each studDetails as { title, value }}
-					<div class="stud-detail">
-						<h4 class="stud-detail__title">{title}</h4>
-						<h2 class="stud-detail__value">{value}</h2>
-					</div>
-				{/each}
-			{/await}
-		</section>
-
-		<!-- Student performance graph -->
-		<section class="stud-performance bg">
-			<div class="stud-performance__title">
-				<h1>Student Performance Graph</h1>
-				<h4>Max Performance 4</h4>
+	<section class="right">
+		<div class="content-wrapper">
+			<div class="logo-wrapper">
+				<img src="images/baze-logo.png" alt="" />
+				<h1>BAZE UNIVERSITY ABUJA</h1>
 			</div>
-		</section>
-	</div>
+
+			<div class="form-header">
+				<h1>Log In</h1>
+				<p>
+					Enter your ID and Password to gain acees to Your stuent
+					portal
+				</p>
+			</div>
+
+			<form on:submit|preventDefault={handleSubmit}>
+				<span class="label"> ID </span>
+				<input type="text" placeholder="Student ID" bind:value={id} />
+
+				<span class="label"> Password </span>
+				<input
+					type="text"
+					placeholder="Enter your Password"
+					bind:value={password}
+				/>
+
+				<button class="cta">Sign In</button>
+			</form>
+			<p class="remarks">
+				Easily access information and links to online resources and
+				services you need for your stay on campus.
+			</p>
+		</div>
+	</section>
 </div>
 
 <style lang="scss">
-	.main {
+	.wrapper {
+		width: 100%;
 		height: 100%;
-		width: 100%;
-		position: relative;
-		background: inherit;
-		padding: 0 50px 50px;
-		overflow-y: auto;
-	}
-
-	.content-grid {
-		margin-top: 5px;
 		display: grid;
-		grid-template-columns: 1.5fr 0.7fr;
-		grid-template-rows: 0.5fr 0.25fr 1.5fr;
-		grid-template-areas:
-			"head head"
-			"cuml details"
-			"perf details";
-		grid-gap: 30px;
+		grid-template-columns: 1fr 1fr;
 	}
 
-	.bg {
+	.left {
+		background: inherit;
+	}
+
+	.right {
 		background: #ffffff;
-		box-shadow: var(--box-shadow);
-		border-radius: var(--advanced-radius);
+		box-shadow: -2px 0px 10px #dfe2ea;
+		border-radius: var(--basic-radius);
+		padding: 20px 0 50px;
 	}
 
-	.quick-stats {
-		width: 100%;
-		padding: 40px 30px;
-		display: flex;
-		justify-content: space-evenly;
-		grid-area: head;
+	.content-wrapper {
+		margin: 0 100px;
 	}
 
-	.stat {
-		display: flex;
-		align-items: center;
-		justify-content: space-evenly;
+	.logo-wrapper {
+		width: fit-content;
+		padding: 30px 20px;
+		margin: 0 auto;
+		display: grid;
+		place-items: center;
 
-		&:not(:last-child) {
-			margin-right: 20px;
-			border-right: 2px solid #f8fafc;
-			padding-right: 20px;
+		img {
+			height: 100px;
 		}
-
-		&__title {
-			font-size: var(--font-size-smaller);
-			font-weight: var(--semibold);
-		}
-
-		&__value {
-			font-size: calc(var(--font-size-mid) + 1px);
-			font-weight: var(--extrabold);
-		}
-	}
-
-	.cumul-pt-avg {
-		grid-area: cuml;
-		text-align: center;
-		padding: 16px;
 
 		h1 {
 			font-size: var(--font-size-mid);
 			font-weight: var(--semibold);
-		}
-
-		span {
-			font-size: var(--font-size-big);
-			font-weight: var(--extrabold);
-		}
-	}
-
-	.stud {
-		grid-area: details;
-		padding: 30px;
-
-		&-detail {
-			border-bottom: 1px solid rgba(83, 89, 104, 0.2);
-
-			&:not(:last-child) {
-				margin-bottom: 20px;
-			}
-
-			&__title {
-				font-size: var(--font-size-smallest);
-				font-weight: var(--semibold);
-			}
-
-			&__value {
-				font-size: var(--font-size-small);
-				font-weight: var(--bold);
-			}
-		}
-	}
-
-	.stud-performance {
-		grid-area: perf;
-		padding: 0;
-
-		&__title {
-			width: 100%;
-			padding: 20px 20px 10px;
 			text-align: center;
-			border-bottom: 1px solid rgba(83, 89, 104, 0.3);
+			margin-top: 10px;
+		}
+	}
 
-			h1 {
-				font-size: var(--font-size-mid);
-				font-weight: var(--semibold);
-			}
+	.form-header {
+		h1 {
+			font-size: calc(var(--font-size-big) + 5px);
+			font-weight: var(--bold);
+		}
+		p {
+			margin: 5px 0 30px;
+			font-family: var(--poppins);
+			font-size: var(--font-size-smaller);
+			font-weight: var(--regular);
+		}
+	}
 
-			h4 {
+	input,
+	button {
+		display: block;
+		outline: none;
+	}
+
+	form {
+		--input-border: #d4d5d9;
+		--input-active-border: #6273e9;
+		--placeholder: #a9acb3;
+
+		.label {
+			font-size: var(--font-size-small);
+			font-weight: var(--semibold);
+			display: block;
+			margin-bottom: 5px;
+		}
+
+		input {
+			width: 100%;
+			padding: 10px 15px;
+			border-radius: var(--little-radius);
+			border: 2px solid var(--input-border);
+			color: var(--font-color);
+			font-size: var(--font-size-small);
+			font-weight: var(--regular);
+			font-family: var(--font-family);
+			margin-bottom: 20px;
+
+			&::placeholder {
 				font-size: var(--font-size-smaller);
 				font-weight: var(--regular);
+				color: var(--placeholder);
 			}
-		}
-	}
 
-	@media screen and (max-width: 1280px) {
-		.main {
-			padding: 0 0 30px;
-		}
-
-		.content-grid {
-			grid-template-columns: 1.3fr 0.8fr;
-			margin: 10px 30px 30px;
-		}
-
-		.stat {
-			&:not(:last-child) {
-				margin-right: 15px;
-				border-right: 2px solid #f8fafc;
-				padding-right: 15px;
-			}
-		}
-	}
-
-	@media screen and (max-width: 728px) {
-		.content-grid {
-			display: block;
-
-			> section {
-				margin-bottom: 30px;
+			&:focus {
+				border: 2px solid var(--input-active-border);
+				font-family: var(--font-family);
 			}
 		}
 
-		.await {
-			background: #ffffff;
+		.cta {
+			--box-shadow: 0px 2px 10px #535968b3;
+			width: 100%;
+			padding: 10px;
+			color: #ffffff;
+			cursor: pointer;
+			background: var(--input-active-border);
+			font-size: var(--font-size-small);
+			font-weight: var(--bold);
+			border: none;
+			border-radius: var(--little-radius);
+			margin-bottom: 20px;
 			box-shadow: var(--box-shadow);
-			border-radius: var(--advanced-radius);
-			padding: 20px;
 		}
+	}
 
-		.quick-stats {
+	.remarks {
+		font-family: var(--poppins);
+		font-size: var(--font-size-smaller);
+		font-weight: var(--regular);
+		text-align: center;
+	}
+
+	@media screen and (max-width: 768px) {
+		.wrapper {
+			display: flex;
 			flex-direction: column;
-			background: none;
-			box-shadow: none;
-			padding: 0;
+			overflow: scroll;
 		}
 
-		.stat {
-			justify-content: initial;
-			padding: 20px 30px;
-			background: #ffffff;
-			box-shadow: var(--box-shadow);
-			border-radius: var(--advanced-radius);
-
-			&:not(:last-child) {
-				border-right: none;
-				margin-right: 0;
-				margin-bottom: 20px;
-			}
-			&__title {
-				font-size: var(--font-size-small);
-			}
-			&__value {
-				font-size: calc(var(--font-size-mid) + 2px);
-			}
-		}
-
-		.stud-performance {
-			height: 300px;
-		}
-
-		.stud-detail {
-			&__title {
-				font-size: calc(var(--font-size-smaller) + 1px);
-			}
-			&__value {
-				font-size: var(--font-size-mid);
-			}
+		.form-header h1 {
+			text-align: center;
 		}
 	}
 </style>
