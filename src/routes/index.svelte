@@ -16,38 +16,35 @@
 	<section class="left" />
 
 	<section class="right">
-		<div class="content-wrapper">
-			<div class="logo-wrapper">
-				<img src="images/baze-logo.png" alt="" />
-				<h1>BAZE UNIVERSITY ABUJA</h1>
-			</div>
+		<div class="logo-wrapper">
+			<img src="images/baze-logo.png" alt="" />
+			<h1>BAZE UNIVERSITY ABUJA</h1>
+		</div>
 
-			<div class="form-header">
-				<h1>Log In</h1>
-				<p>
-					Enter your ID and Password to gain acees to Your stuent
-					portal
-				</p>
-			</div>
-
-			<form on:submit|preventDefault={handleSubmit}>
-				<span class="label"> ID </span>
-				<input type="text" placeholder="Student ID" bind:value={id} />
-
-				<span class="label"> Password </span>
-				<input
-					type="text"
-					placeholder="Enter your Password"
-					bind:value={password}
-				/>
-
-				<button class="cta">Sign In</button>
-			</form>
-			<p class="remarks">
-				Easily access information and links to online resources and
-				services you need for your stay on campus.
+		<div class="form-header">
+			<h1>Log In</h1>
+			<p>
+				Enter your ID and Password to gain acees to Your stuent portal
 			</p>
 		</div>
+
+		<form on:submit|preventDefault={handleSubmit}>
+			<span class="label"> ID </span>
+			<input type="text" placeholder="Student ID" bind:value={id} />
+
+			<span class="label"> Password </span>
+			<input
+				type="text"
+				placeholder="Enter your Password"
+				bind:value={password}
+			/>
+
+			<button class="cta">Sign In</button>
+		</form>
+		<p class="remarks">
+			Easily access information and links to online resources and services
+			you need for your stay on campus.
+		</p>
 	</section>
 </div>
 
@@ -70,11 +67,7 @@
 		background: #ffffff;
 		box-shadow: -2px 0px 10px #dfe2ea;
 		border-radius: var(--basic-radius);
-		padding: 20px 0 50px;
-	}
-
-	.content-wrapper {
-		margin: 0 100px;
+		padding: 20px 100px 50px;
 	}
 
 	.logo-wrapper {
@@ -173,6 +166,12 @@
 		text-align: center;
 	}
 
+	@media screen and (max-width: 1124px) {
+		.right {
+			padding: 20px 50px 50px;
+		}
+	}
+
 	@media screen and (max-width: 768px) {
 		.wrapper {
 			display: flex;
@@ -180,7 +179,7 @@
 			overflow: scroll;
 		}
 
-		.form-header h1 {
+		.form-header {
 			text-align: center;
 		}
 	}
